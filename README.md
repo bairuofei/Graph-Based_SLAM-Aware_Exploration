@@ -5,11 +5,11 @@ This repo includes a ROS plugin for the `nav2d` package for autonomous explorati
 <div style="display:flex; justify-content:center;">
 <figure>
     <img src="./images/frontier.gif" alt="Alt Text" width="250" height="250">
-    <figcaption style="text-align:center;">Frontier-based Method</figcaption>
+    <!-- <figcaption style="text-align:center;">Frontier-based Method</figcaption> -->
 </figure>
 <figure>
     <img src="./images/active_tsp.gif" alt="Alt Text" width="250" height="250">
-    <figcaption style="text-align:center;">Active TSP-based Method</figcaption>
+    <!-- <figcaption style="text-align:center;">Active TSP-based Method</figcaption> -->
 </figure>
     
     
