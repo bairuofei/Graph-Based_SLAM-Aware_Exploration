@@ -53,9 +53,46 @@ The robot will start to exploration the default environment.
 
 ### Change exploration strategy
 
+Three types of exploration strategies are provided. You can simply change to one of them by specifying in the roslaunch file.
+- frontier-based (no need for prior graph)
+```xml
+<arg name="strategy" default="NearestFrontierPlanner" />
+```
+- TSP-based (prior graph required)
+```xml
+<arg name="strategy" default="MyPlanner" />
+<arg name="only_use_tsp" default="true" />
+```
+- the SLAM-Aware path planner (prior graph required)
+```xml
+<arg name="strategy" default="MyPlanner" />
+<arg name="only_use_tsp" default="false" />
+```
+
+
+
+
+
 
 
 ## Explore a new environment
+
+#### Create new directory
+Create a new folder named `my_environment` under the `world` folder. 
+You are recommended to copy from an existing folder and then modify each file.
+The folder should contains files as follow:
+```
+my_environment
+├── floorplan.inc
+├── hokuyo.inc
+├── p3at.inc
+├── my_environment.png         // See step 1
+├── my_environment.world       // See step 2
+├── my_environment.yaml        // See step 3
+├── my_environment.drawio      // See step 4
+└── my_environment.xml         // See step 4
+```
+
 
 #### Create a 2D environment
 1. Create a `my_environment.png` file representing the top view of the environment;
@@ -75,41 +112,27 @@ The robot will start to exploration the default environment.
 
 #### Specify the new environment in launch file
 
-
-
-
-
-4. In ROS launch file, set the `.yaml` file for `map_server` node, set the `.world` file for `Stage` node.
-
-5. In ROS launch file, set the `robot_position` parameter as in `.world` file in Step 2. Two node will use this parameter:
-    1. In `path_planner.py`, define prior_map for the new map. The positions of vertices in prior_map are defined in a coordinate frame with its origin being the center of map. And then call the function `self.align_prior_map_with_robot()`, redefine the position of vertices in prior_map in robot's coordinate frame.
-
-    2. In `pubPathGT.cpp`, use `robot_position` parameter to corrent the `odom` coordinate.
-
-6. In ROS launch file, set the `use_drawio` parameter to `true / false`.
-
-7. In ROS launch file, set the `map_width` parameter to the map actual width as in `.world` file in Step 2.
-
-
-
-
-
-###
-
-#### Quick Check
-The following parameters in `.launch` file should be carefully defined.
+The following parameters in `.launch` file should be modified accordingly.
 
 ```xml
-	<arg name="suffix" default="_7_06_frontier3"/>
+	<arg name="suffix" default="_MyPlanner"/>
 	<arg name="strategy" default="MyPlanner" />
-	<arg name="map_name" default="map3/grid_world" />
-	<arg name="robot_position" default="-28 0 0" />
-	<arg name="use_drawio" default="true" />
+	<arg name="map_name" default="my_environment/my_environment" />
+
+    <!-- same as in step 2 -->
+	<arg name="robot_position" default="0 0 0" />   
+    <!-- same as in step 2 -->
 	<arg name="map_width" default="74" />
 ```
 
+#### Explore the new environment
 
-#### Detailed steps
+Launch the roslaunch file as before. 
+The new environment will be loaded into the Stage simulator.
+The prior map will be automatically read and transformed into the robot's local coordinate frame.
+The robot now starts to explore the new environment.
+
+
 
 
 
