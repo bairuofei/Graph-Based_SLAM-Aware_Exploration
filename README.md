@@ -1,6 +1,7 @@
 
-# Graph-based SLAM-Aware Exploration
-Source code for the paper "*Graph-based SLAM-Aware Exploration with Prior Topo-Metric Information*", which exploits prior topo-metric information of the environment for fast exploration and enhanced pose graph reliability in the SLAM process.
+# Graph-based SLAM-Aware Exploration (will release soon)
+Source code for the paper "*Graph-based SLAM-Aware Exploration with Prior Topo-Metric Information*".
+The paper proposes a SLAM-aware exploration method that exploits prior topo-metric information of the environment for fast exploration and enhanced pose graph reliability in the SLAM process.
 It works as an exploration plugin to the [nav2d](http://wiki.ros.org/nav2d) package for autonomous exploration .
 
 <div style="display:flex; justify-content:center;">
@@ -14,7 +15,7 @@ It works as an exploration plugin to the [nav2d](http://wiki.ros.org/nav2d) pack
 </figure>
 </div>
 
-Frontier-based method (Left)  V.S.   the SLAM-Aware planner (right)
+Frontier-based method (Left)  V.S.   the SLAM-aware exploration (right)
 
 ## Requirements
 
