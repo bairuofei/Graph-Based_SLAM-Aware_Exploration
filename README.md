@@ -14,6 +14,8 @@ It works as an exploration plugin to the [nav2d](http://wiki.ros.org/nav2d) pack
 </figure>
 </div>
 
+Frontier-based method (Left)  V.S.   the SLAM-Aware planner (right)
+
 ## Requirements
 
 The code has been developed and tested on Ubuntu 20.04, ROS noetic.
