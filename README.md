@@ -17,6 +17,12 @@ It works as an exploration plugin to the [nav2d](http://wiki.ros.org/nav2d) pack
 
 Frontier-based method (Left)  V.S.   the SLAM-aware exploration (right)
 
+<figure>
+    <img src="./images/map4.gif" alt="Alt Text" width="800" height="400">
+    <!-- <figcaption style="text-align:center;">Active TSP-based Method</figcaption> -->
+</figure>
+</div>
+
 ## Requirements
 
 The code has been developed and tested on Ubuntu 20.04, ROS noetic.
