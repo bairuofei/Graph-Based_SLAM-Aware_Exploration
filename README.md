@@ -2,7 +2,9 @@
 # Graph-based SLAM-Aware Exploration (will release soon)
 Source code for the paper ["*Graph-based SLAM-Aware Exploration with Prior Topo-Metric Information*](https://arxiv.org/abs/2308.16522)".
 The paper proposes a SLAM-aware exploration method that exploits prior topo-metric information of the environment for fast exploration and enhanced pose graph reliability in the SLAM process.
-It works as an exploration plugin to the [nav2d](http://wiki.ros.org/nav2d) package for autonomous exploration .
+
+Our method tends to form "**big**" loop closures that can globally stablize the SLAM pose-graph based on the graph spectral analysis, thus balancing exploration efficiency and pose-graph reliability, as shown by the following results.
+
 
 <div style="display:flex; justify-content:center;">
 <figure>
