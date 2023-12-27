@@ -32,13 +32,35 @@ The code has been developed and tested on Ubuntu 20.04, ROS noetic.
 Install required:
 - [Eigen](https://eigen.tuxfamily.org/dox/GettingStarted.html) REQUIRED
 - ROS noetic
-- [pyconcorde](https://github.com/jvkersch/pyconcorde) (Traveling Salesman Problem Solver, detailed usage refers to [here](https://github.com/jvkersch/pyconcorde/issues/28))
-- [p2os_urdf](https://github.com/allenh1/p2os) (Robot model)
+- [pyconcorde](https://github.com/jvkersch/pyconcorde) (A python library for Traveling Salesman Problem Solver, detailed usage refers to [here](https://github.com/jvkersch/pyconcorde/issues/28#issuecomment-770354999))
+- [p2os_urdf](https://github.com/allenh1/p2os) (A ros package that provides `Pionner3at` robot model in the simulation.)
 
-No need to install:
-- [Nav2d](http://wiki.ros.org/nav2d) (has been included in this repo, no need to install)
+
+
+Source code from following repo is also used:
 - [astar-gridmap-2d](https://github.com/Eurecat/astar-gridmap-2d) (has been included in this repo, no need to install)
 
+
+
+## Installation
+There are two ros packages to install: `Graph-Based_SLAM-Aware_Exploration` (provided in this repo) and `navigation_2d` (provided [here](https://github.com/bairuofei/navigation_2d)).
+
+```bash
+$ mkdir -r Graph-Based_SLAM-Aware_Exploration/src
+$ cd Graph-Based_SLAM-Aware_Exploration && catkin_make
+$ cd src
+
+# download navigation_2d package
+$ git clone git@github.com:bairuofei/navigation_2d.git
+
+# download Graph-Based_SLAM-Aware_Exploration package
+$ git clone git@github.com:bairuofei/Graph-Based_SLAM-Aware_Exploration.git
+
+$ cd ..
+$ source ./devel/setup.bash
+$ catkin_make
+
+```
 
 
 ## Usage
@@ -47,7 +69,6 @@ No need to install:
 Open terminal 1
 ```
 $ cd Graph-Based_SLAM-Aware_Exploration/
-$ catkin_make
 $ source ./devel/setup.bash
 
 $ roslaunch cpp_solver exploration.launch
