@@ -43,7 +43,7 @@ Source code from following repo is also used:
 
 
 ## Installation
-There are two ros packages to install: `Graph-Based_SLAM-Aware_Exploration` (provided in this repo) and `navigation_2d` (provided [here](https://github.com/bairuofei/navigation_2d)).
+There are two ros packages to install: `cpp_solver` (provided in this repo) and `navigation_2d` (provided [here](https://github.com/bairuofei/navigation_2d)).
 
 ```bash
 $ mkdir -r Graph-Based_SLAM-Aware_Exploration/src
