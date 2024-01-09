@@ -1,5 +1,5 @@
 
-# Graph-based SLAM-Aware Exploration (will release soon)
+# Graph-based SLAM-Aware Exploration
 Source code for the paper ["*Graph-based SLAM-Aware Exploration with Prior Topo-Metric Information*](https://arxiv.org/abs/2308.16522)".
 The paper proposes a SLAM-aware exploration method that exploits prior topo-metric information of the environment for fast exploration and enhanced pose graph reliability in the SLAM process.
 
@@ -166,6 +166,12 @@ my_environment
 The new environment will be loaded into the Stage simulator.
 The prior map will automatically be read and transformed into the robot's local coordinate frame.
 The robot now starts to explore the new environment.
+
+## Known Issues
+1. Frontier allocation to vertices in the prior graph may be incorrect, becuase we only evaluate the Euclidean distance between fronters and vertices. 
+Exact distance evaluation is also possible by using A*STAR algorithm, but would be time inefficient in our testing.
+
+2. Frontier detection module sometimes misses one or two frontiers. More advanced implementation can be found [here](https://github.com/hasauino/rrt_exploration).
 
 
 
