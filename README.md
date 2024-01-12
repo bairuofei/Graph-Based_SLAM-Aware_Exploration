@@ -169,7 +169,7 @@ The robot now starts to explore the new environment.
 
 ## Known Issues
 1. Frontier allocation to vertices in the prior graph may be incorrect, becuase we only evaluate the Euclidean distance between fronters and vertices. 
-Exact distance evaluation is also possible by using A*STAR algorithm, but would be time inefficient in our testing.
+Exact distance evaluation is also possible by using A* algorithm to explicitly evaluate the distance between each frontier to vertices in the prior graph, but would be time inefficient in our testing.
 
 2. Frontier detection module sometimes misses one or two frontiers. More advanced implementation can be found [here](https://github.com/hasauino/rrt_exploration).
 
