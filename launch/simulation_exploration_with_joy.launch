@@ -1,0 +1,146 @@
+<launch>
+	<arg name="suffix" default="_SLAM_Aware_Planner_map3"/>
+	<!-- Exploration strategies: MyPlanner, NearestFrontierPlanner -->
+	<arg name="strategy" default="MyPlanner" />
+	<arg name="only_use_tsp" default="false" />
+
+    <arg name="need_noise" default="false" />
+    <arg name="variance" default="0" />
+
+    <!-- <arg name="map_name" default="map4/map4" />
+	<arg name="robot_position" default="-17.9 -26.35 0" />
+	<arg name="map_width" default="39.8" /> -->
+	
+    <!-- <arg name="map_name" default="map8/map8" />
+	<arg name="robot_position" default="0.0 0.0 0" />
+	<arg name="map_width" default="86.8" /> -->
+
+    <!-- <arg name="map_name" default="map7/map7" />
+	<arg name="robot_position" default="-55 -20 0" />
+	<arg name="map_width" default="138.2" /> -->
+
+    <!-- <arg name="map_name" default="map3/map3" />
+	<arg name="robot_position" default="-28.0 -28.0 0" />
+	<arg name="map_width" default="74.0" /> -->
+
+
+    <arg name="map_name" default="map9/map9" />
+	<arg name="robot_position" default="30.0 -7.0 0" />
+	<arg name="map_width" default="186.5" />
+
+	<arg name="use_local_planner" default="false" />
+    <!-- tsp-solver   or   concorde -->
+	<arg name="tsp_solver" default="concorde" />  
+	<arg name="use_drawio" default="true" />
+	
+	<param name="robot_start_position" type="str" value="$(arg robot_position)" />
+
+	<!-- Some general parameters -->
+	<param name="use_sim_time" value="true" />
+	<param name="use_tf1" value="true" />
+	<rosparam command="load" file="$(find cpp_solver)/param/ros.yaml"/>
+
+
+
+    <!-- Start the joystick-driver and remote-controller for operation-->
+	<node name="Joystick" pkg="joy" type="joy_node" >
+		<param name="dev" value="/dev/input/js1" />
+	</node>
+
+	<node name="Remote" pkg="nav2d_remote" type="remote_joy" >
+		<rosparam file="$(find nav2d_tutorials)/param/remote.yaml"/>
+	</node>
+
+
+	<!-- Start Stage simulator with a given environment -->
+	<node name="Stage" pkg="stage_ros" type="stageros" args="$(find cpp_solver)/world/$(arg map_name).world">
+		<param name="base_watchdog_timeout" value="0" />
+	</node>
+
+	<!-- Start map_server to display the full map -->
+	<!-- Yaml assumes robot's location as the centre point -->
+  	<arg name="map_file" default="$(find cpp_solver)/world/$(arg map_name).yaml"/>
+	<node name="map_server" pkg="map_server" type="map_server"  args="$(arg map_file)" >
+		<param name="frame_id" value="map" />
+		<remap from="map" to="world"/>
+		<remap from="map_metadata" to="world_metadata"/>
+		<remap from="static_map" to="static_world"/>
+	</node>
+
+
+	<!-- Start the Operator to control the simulated robot -->
+	<node name="Operator" pkg="nav2d_operator" type="operator" >
+		<remap from="scan" to="base_scan"/>
+		<rosparam file="$(find cpp_solver)/param/operator.yaml"/>
+		<rosparam file="$(find cpp_solver)/param/costmap.yaml" ns="local_map" />
+	</node>
+
+	<!-- Start Mapper to genreate map from laser scans -->
+	<node name="Mapper" pkg="nav2d_karto" type="mapper" output="screen">
+		<remap from="scan" to="base_scan"/>
+		<!-- value = map  -->
+		<param name="map_frame" value="map" />  
+		<rosparam file="$(find cpp_solver)/param/mapper.yaml"/>
+	</node>
+
+
+	<arg name="debug" default="false"/>
+    <arg name="launch_prefix" value="gdb --args" if="$(arg debug)"/>
+
+	<!-- Start the Navigator to move the robot autonomously -->
+	<node name="Navigator" pkg="nav2d_navigator" type="navigator" output="screen" launch-prefix="$(arg launch_prefix)" >
+		<rosparam file="$(find cpp_solver)/param/navigator.yaml"/>
+		<param name="exploration_strategy" value="$(arg strategy)" />
+		<param name="use_local_planner" value="$(arg use_local_planner)" />
+        <param name="save_path_plan_time" value="$(find cpp_solver)/results/plan_time$(arg suffix).txt" />
+	</node>
+
+	<!-- for service call, StartMapping, StartExploration -->
+	<node name="GetMap" pkg="nav2d_navigator" type="get_map_client" />  
+	<node name="Explore" pkg="nav2d_navigator" type="explore_client" />
+	<node name="SetGoal" pkg="nav2d_navigator" type="set_goal_client" />
+
+	<!-- Publish robot ground truth path -->
+	<node name="pubPath" pkg="cpp_solver" type="pub_path" >
+		<param name="gt_save_path" type="str" value="$(find cpp_solver)/results/gt_traj$(arg suffix).txt" />
+		<param name="slam_save_path" type="str" value="$(find cpp_solver)/results/slam_traj$(arg suffix).txt" />
+		<param name="robot_position" type="str" value="$(arg robot_position)" /> 
+	</node>
+
+	<!-- <node name="updateDistance" pkg="cpp_solver" type="updateDistance" /> -->
+
+	<!-- Button to control stop and start exploration -->
+	<node name="exploration_button_server" pkg="cpp_solver" type="exploration_button_server.py" />
+
+	<!-- modified tsp path planner node, publish prior_graph -->
+	<node name="path_planner" pkg="cpp_solver" type="path_planner.py" output="screen">
+		<param name="g2o_save_path" type="str" value="$(find cpp_solver)/results/graph$(arg suffix).g2o" />
+		<param name="robot_position" type="str" value="$(arg robot_position)" />
+		<param name="use_drawio" type="bool" value="$(arg use_drawio)" />
+		<param name="xml_path" type="str" value="$(find cpp_solver)/world/$(arg map_name).xml" />
+		<param name="map_width" type="double" value="$(arg map_width)" />
+		<param name="only_use_tsp" type="bool" value="$(arg only_use_tsp)" />
+		<param name="tsp_solver" type="str" value="$(arg tsp_solver)" />
+        <param name="need_noise" type="bool" value="$(arg need_noise)" />
+        <param name="variance" type="double" value="$(arg variance)" />
+	</node>
+
+	<!-- Load rqt_robot_steering control panel -->
+	<node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering" />
+
+		
+	<param name="robot_description" command="rosrun xacro xacro $(find p2os_urdf)/defs/pioneer3at.xacro" />
+
+  	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    	<param name="publish_frequency" type="double" value="30.0"/>
+    	<param name="tf_prefix" type="string" value=""/>
+  	</node>
+
+	<node pkg="p2os_urdf" type="p2os_publisher_3at" name="publisher"/>
+
+
+	<!-- RVIZ to view the visualization -->
+	<node name="RVIZ" pkg="rviz" type="rviz" args=" -d $(find cpp_solver)/param/exploration.rviz" respawn="false" output="log"/>
+
+
+</launch>

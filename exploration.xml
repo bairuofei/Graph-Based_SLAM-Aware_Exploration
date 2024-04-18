@@ -1,0 +1,9 @@
+  <library path="lib/libCppExplorationPlugins">
+    <class name="MyPlanner" type="MyPlanner" base_class_type="ExplorationPlanner">
+      <description>
+        Implement graph-based active SLAM path planning.
+      </description>
+    </class>
+
+  </library>
+  

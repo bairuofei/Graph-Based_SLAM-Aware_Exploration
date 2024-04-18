@@ -1,0 +1,28 @@
+<launch>
+
+    <node name="RosAria" pkg="rosaria" type="RosAria" />
+
+    <!-- Start the joystick-driver and remote-controller for operation-->
+	<node name="Joystick" pkg="joy" type="joy_node" >
+		<param name="dev" value="/dev/input/js1" />
+	</node>
+
+    <node name="urg_node" pkg="urg_node" type="urg_node" />
+
+    <!-- camera relative pose -->
+	<include file="$(find realsense2_camera)/launch/rs_camera.launch"/>
+	<node pkg="tf2_ros" type="static_transform_publisher" name="static_camera_transform" args="0 0 0 0 0 0 1 base_link camera_link" />
+    
+
+    <node name="teleop_node" pkg="teleop_twist_joy" type="teleop_node" >
+		<remap from="cmd_vel" to="/RosAria/cmd_vel"/>
+        <param name="scale_linear" value="1.3" />
+	</node>
+
+    <!-- transformation from frame_id to child_frame_id -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="static_transform_publisher" args="0.217 0 0 0 0 0 1 base_link laser" />
+
+	<!-- RVIZ to view the visualization -->
+	<node name="RVIZ" pkg="rviz" type="rviz" args=" -d $(find nav2d_tutorials)/rviz/myrviz.rviz" />
+
+</launch>
