@@ -46,8 +46,8 @@ Source code from following repo is also used:
 There are two ros packages to install: `cpp_solver` (provided in this repo) and `navigation_2d` (provided [here](https://github.com/bairuofei/navigation_2d)).
 
 ```bash
-$ mkdir -r Graph-Based_SLAM-Aware_Exploration/src
-$ cd Graph-Based_SLAM-Aware_Exploration && catkin_make
+$ mkdir -r catkin_ws/src
+$ cd catkin_ws && catkin_make
 $ cd src
 
 # download navigation_2d package
@@ -55,10 +55,11 @@ $ git clone git@github.com:bairuofei/navigation_2d.git
 
 # download Graph-Based_SLAM-Aware_Exploration package
 $ git clone git@github.com:bairuofei/Graph-Based_SLAM-Aware_Exploration.git
+$ mv Graph-Based_SLAM-Aware_Exploration cpp_solver
 
 $ cd ..
-$ source ./devel/setup.bash
 $ catkin_make
+$ source ./devel/setup.bash
 
 ```
 
