@@ -1,4 +1,0 @@
-int32 goal_vertex
----
-float32[] loop_x_coords
-float32[] loop_y_coords

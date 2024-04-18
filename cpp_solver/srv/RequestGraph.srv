@@ -1,6 +1,0 @@
----
-int32[] vertices
-float32[] x_coords
-float32[] y_coords
-int32[] edges_start
-int32[] edges_end

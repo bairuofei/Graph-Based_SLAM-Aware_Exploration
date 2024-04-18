@@ -1,5 +1,0 @@
-int32 curr_vertex_idx
-int32[] covered_vertices
----
-int32[] response
-bool[] isLoop

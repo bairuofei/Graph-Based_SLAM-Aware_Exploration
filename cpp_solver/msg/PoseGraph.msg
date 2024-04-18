@@ -1,9 +1,0 @@
-int32 vertex_start_idx
-int32[] vertices
-float32[] vertex_x 
-float32[] vertex_y
-float32[] vertex_theta
-int32 edge_start_idx
-int32[] edges_start
-int32[] edges_end
-string[] covariance
