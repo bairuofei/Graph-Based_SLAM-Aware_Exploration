@@ -36,7 +36,7 @@ Install required:
 - [pyconcorde](https://github.com/jvkersch/pyconcorde) (A python library for Traveling Salesman Problem Solver, detailed usage refers to [here](https://github.com/jvkersch/pyconcorde/issues/28#issuecomment-770354999))
     - To install pyconcorde, you need to first install `concorde`, and set the PATH in the environment variable. You can simply download `concorde` and `linkern` [here](https://www.math.uwaterloo.ca/tsp/concorde/downloads/downloads.htm), unzip the executable programs, and set the path in `~/.bashrc` as `export PATH=$PATH:{your path to the executable programs}`.
 - [p2os_urdf](https://github.com/allenh1/p2os) (A ros package that provides `Pionner3at` robot model in the simulation.)
-    - Only need one file `p2os_urdf/defs/pioneer3at.xacro` from this package is used, so you can simply download this file, and update the path to it in the launch file. 
+    - Only one file `p2os_urdf/defs/pioneer3at.xacro` from this package is used, so you can simply download this file, and update the path to it in the launch file. 
     - By default you can install `p2os_urdf` globally, and then use `$(find p2os_urdf)` to get the path automatically.
 
 
