@@ -107,7 +107,12 @@ Three types of exploration strategies are provided. You can simply change to one
 
 
 
-
+## Using Real-robot (Pioneer3AT by default)
+1. Download and build Aria and RosAria
+2. Download urg_node for Hokuyo laser.
+3. Connect Pioneer robot, Hokuyo laser, and Joystick to PC, and change the permission properties of the ports;
+4. Specify exploration strategy and prior graph;
+5. Launch the `real_exploration_with_pioneer.launch` file to start exploration.
 
 
 
