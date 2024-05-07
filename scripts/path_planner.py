@@ -13,9 +13,9 @@ import time
 
 from std_msgs.msg import Float64MultiArray, Int32, Int32MultiArray, Int16
 
-from srv import TspPathList, TspPathListResponse, TspPathListRequest, \
+from cpp_solver.srv import TspPathList, TspPathListResponse, TspPathListRequest, \
     RequestGraph, RequestGraphResponse, RequestGraphRequest, ReliableLoop, ReliableLoopRequest, ReliableLoopResponse
-from msg import PoseGraph, EdgeDistance
+from cpp_solver.msg import PoseGraph, EdgeDistance
 
 
 # Add python path to header file
