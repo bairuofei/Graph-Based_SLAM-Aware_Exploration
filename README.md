@@ -1,5 +1,26 @@
 
 # Graph-based SLAM-Aware Exploration
+
+
+## Update (06/2024)
+
+Our paper has been accpeted by IEEE RA-L for publication. Please follow [this link](https://ieeexplore-ieee-org.remotexs.ntu.edu.sg/document/10577228) to the preprint version.
+
+Please consider citing our paper if you find it helpful.
+```
+@ARTICLE{10577228,
+  author={Bai, Ruofei and Guo, Hongliang and Yau, Wei-Yun and Xie, Lihua},
+  journal={IEEE Robotics and Automation Letters}, 
+  title={Graph-Based SLAM-Aware Exploration With Prior Topo-Metric Information}, 
+  year={2024},
+  volume={},
+  number={},
+  pages={1-8},
+  keywords={Planning under uncertainty;SLAM;autonomous exploration},
+  doi={10.1109/LRA.2024.3420817}}
+```
+
+## Quick Overview
 Source code for the paper ["*Graph-based SLAM-Aware Exploration with Prior Topo-Metric Information*](https://arxiv.org/abs/2308.16522)".
 The paper proposes a SLAM-aware exploration method that exploits prior topo-metric information of the environment for fast exploration and enhanced pose graph reliability in the SLAM process.
 
