@@ -1,6 +1,11 @@
 
 # Graph-based SLAM-Aware Exploration
 
+## Update (07/2024): Extension to multi-robot graph exploration
+
+Extension of this repo to multi-robot graph exploration is [open-source here](https://github.com/bairuofei/CGE). 
+The [related paper](https://arxiv.org/abs/2407.01013) has been accpeted by 2024 IEEE/RSJ IROS.
+
 
 ## Update (06/2024)
 
