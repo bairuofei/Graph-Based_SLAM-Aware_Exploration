@@ -77,6 +77,7 @@ There are two ros packages to install: `cpp_solver` (provided in this repo) and 
 ```bash
 $ mkdir -r catkin_ws/src
 $ cd catkin_ws && catkin_make
+$ source devel/setup.bash
 $ cd src
 
 # download navigation_2d package
