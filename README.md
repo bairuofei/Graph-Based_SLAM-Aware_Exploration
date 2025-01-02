@@ -1,13 +1,31 @@
 
-# Graph-based SLAM-Aware Exploration
+<div align ="center">
 
-## Update (07/2024): Extension to multi-robot graph exploration
+<!-- <img src="./assets/logo.png" width="20%"> -->
+<h3> RA-L 2024: Graph-Based SLAM-Aware Exploration With Prior Topo-Metric Information </h3>
+
+Ruofei Bai<sup>1,2</sup>, Hongliang Guo<sup>2</sup>, Wei-Yun Yau<sup>2</sup>, Lihua Xie<sup>1</sup>
+
+<sup>1</sup> Nanyang Technological University,
+<sup>2</sup> Institute for Infocomm Research (I2R), Agency for Science, Technology and Research (A*STAR)
+
+<a href="https://ieeexplore.ieee.org/abstract/document/10577228"><img alt="Paper" src="https://img.shields.io/badge/Paper-IEEE%20Xplore-pink"/></a>
+<a href="https://arxiv.org/abs/2308.16522"><img alt="Paper" src="https://img.shields.io/badge/Paper-arXiv-8A2BE2"/></a>
+<!-- <a href='https://drive.google.com/drive/folders/1UmZ3vA1cOunB-2wgz8T1fJDebhb-gmax?usp=sharing'><img src='https://img.shields.io/badge/Dataset-UMAD-green' alt='Code&Datasets'></a>
+<a href="https://www.youtube.com/watch?v=xORb4H-AyNw"><img alt="Video" src="https://img.shields.io/badge/Video-Youtube-red"/></a>
+<a href="https://github.com/IMRL/UMAD/blob/main/Doc/UMAD-Poster.pdf"><img alt="Poster" src="https://img.shields.io/badge/Poster-blue"/></a> -->
+
+</div>
+
+
+## News
+### Update (07/2024): Extension to multi-robot graph exploration
 
 Extension of this repo to multi-robot graph exploration is [open-source here](https://github.com/bairuofei/CGE). 
 The [related paper](https://arxiv.org/abs/2407.01013) has been accpeted by 2024 IEEE/RSJ IROS.
 
 
-## Update (06/2024)
+### Update (06/2024)
 
 Our paper has been accpeted by IEEE RA-L for publication. Please follow [this link](https://ieeexplore-ieee-org.remotexs.ntu.edu.sg/document/10577228) to the preprint version.
 
